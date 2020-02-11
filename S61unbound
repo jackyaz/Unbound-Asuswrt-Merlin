@@ -10,6 +10,7 @@ if [ "$1" = "start" ] && [ "$(nvram get ntp_ready)" = "0" ]; then
         done
 fi
 
+logger -t S61unbound "Starting Unbound DNS server $0"
 # set environment PATH to system binaries
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:$PATH
 export TZ=$(cat /etc/TZ)
