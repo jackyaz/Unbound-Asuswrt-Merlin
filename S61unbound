@@ -44,6 +44,7 @@ elif [ "$1" = "restart" ]; then
 . /opt/etc/init.d/rc.func && logger -st "S61unbound" "Restarting Unbound DNS server $0"
 elif [ "$1" = "stop" ]; then
 . /opt/etc/init.d/rc.func && logger -st "S61unbound" "Stopping Unbound DNS server $0"
+kill -9 $0
 fi
 #for any other arguements
 . /opt/etc/init.d/rc.func
