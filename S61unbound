@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 if [ "$1" = "start" ] && [ "$(nvram get ntp_ready)" = "0" ]; then
         # Wait for NTP before starting
         ntptimer=0
