@@ -14,7 +14,7 @@ echo "Removing possible temporary files.."
 echo "Dowloading StevenBlack Adlist..."
 curl --progress-bar https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | grep -v "#" | grep -v "::1" | grep -v "0.0.0.0 0.0.0.0" | sed '/^$/d' | sed 's/\ /\\ /g' | awk '{print $2}' | grep -v '^\\' | grep -v '\\$'| sort >> $tempoutlist
 echo "Dowloading Domains wildcard 1 Adlist..."
-curl --progress-bar https://raw.githubusercontent.com/rgnldo/Unbound-Asuswrt-Merlin/master/adblock/host >> $tempoutlist
+curl --progress-bar https://raw.githubusercontent.com/jackyaz/Unbound-Asuswrt-Merlin/master/adblock/host >> $tempoutlist
 echo "Dowloading Domains wildcard 2 Adlist..."
 curl --progress-bar https://raw.githubusercontent.com/dnswarden/blocklist/master/blacklist-full.txt >> $tempoutlist
 
