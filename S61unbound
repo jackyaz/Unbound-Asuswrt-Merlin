@@ -9,21 +9,6 @@ if [ "$1" = "start" ] && [ "$(nvram get ntp_ready)" = "0" ]; then
                 [ "$ntptimer" -eq "1" ] && logger -st "S61unbound" "Waiting for NTP to sync before starting Unbound..."
                 sleep 1
         done
-        if [ "ntptimer" -gt "60" ]; then
-                local NW_STATE
-                local RES_STATE
-                ping 1.1.1.1 -c1 -W2 >/dev/null 2>&1
-                NW_STATE=$?
-                nslookup google.com >/dev/null 2>&1
-                RES_STATE=$?
-                if [ -z "`pidof unbound`" ]; then
-                        logger -st "S61unbound" "Warning: unbound is dead"
-                        /opt/etc/init.d/S61unbound start && exit
-                elif [ $NW_STATE -eq 0 ] && [ $RES_STATE -ne 0 ]; then
-                        logger -st "S61unbound" "Warning: unbound is not responding"
-                        /opt/etc/init.d/S61unbound start && exit
-                fi
-        fi
 fi
 
 # set environment PATH to system binaries
