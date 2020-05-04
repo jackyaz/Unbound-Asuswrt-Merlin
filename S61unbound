@@ -3,14 +3,14 @@
 if [ "$1" = "start" ] || [ "$1" = "restart" ]; then
         # Wait for NTP before starting
         ntptimer=0
-        while [ "$(nvram get ntp_ready)" = "0" ] && [ "$ntptimer" -lt "60" ]; do
+        while [ "$(nvram get ntp_ready)" = "0" ] && [ "$ntptimer" -lt "300" ]; do
                 ntptimer=$((ntptimer+1))
                 [ "$ntptimer" -eq "1" ] && logger -st "S61unbound" "Waiting for NTP to sync before starting Unbound..."
                 sleep 1
         done
 
-        if [ "$ntptimer" -ge "60" ]; then
-                logger -st "S61unbound" "NTP failed to sync after 1 minute - please check immediately!"
+        if [ "$ntptimer" -ge "300" ]; then
+                logger -st "S61unbound" "NTP failed to sync after 5 minutes - please check immediately!"
                 exit 1
         fi
 fi
